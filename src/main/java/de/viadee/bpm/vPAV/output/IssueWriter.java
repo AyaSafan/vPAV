@@ -93,11 +93,9 @@ public class IssueWriter {
 		final Collection<CheckerIssue> issues = new ArrayList<CheckerIssue>();
 
 		final BpmnElement element = variable.getOperations().get(0).getElement();
-		final BaseElement baseElement = element.getBaseElement();
 
 		issues.add(new CheckerIssue(rule.getName(), ruleDescription, classification, element.getProcessDefinition(),
-				baseElement.getAttributeValue(BpmnModelConstants.BPMN_ATTRIBUTE_ID),
-				baseElement.getAttributeValue(BpmnModelConstants.BPMN_ATTRIBUTE_NAME), message));
+				null, null, message));
 
 		return issues;
 	}
