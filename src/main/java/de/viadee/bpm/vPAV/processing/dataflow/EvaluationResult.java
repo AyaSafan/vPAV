@@ -31,6 +31,9 @@
  */
 package de.viadee.bpm.vPAV.processing.dataflow;
 
+import de.viadee.bpm.vPAV.processing.model.graph.Path;
+
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -44,6 +47,8 @@ public class EvaluationResult<T> {
     private boolean result;
 
     private T evaluatedVariable;
+
+    private List<Path> invalidPaths;
 
     static <T> EvaluationResult<T> forViolation(String message, T evaluatedVariable) {
         return new EvaluationResult<>(false, evaluatedVariable, message.isEmpty() ? null : message);
@@ -59,6 +64,13 @@ public class EvaluationResult<T> {
 
     static <T> EvaluationResult<T> forSuccess(String message, T evaluatedVariable) {
         return new EvaluationResult<>(true, evaluatedVariable, message.isEmpty() ? null : message);
+    }
+
+    public EvaluationResult(boolean result, T evaluatedVariable, String message, List<Path> paths) {
+        this.message = message;
+        this.result = result;
+        this.evaluatedVariable = evaluatedVariable;
+        this.invalidPaths = paths;
     }
 
     public EvaluationResult(boolean result, T evaluatedVariable, String message) {
@@ -82,6 +94,10 @@ public class EvaluationResult<T> {
 
     public Optional<String> getMessage() {
         return Optional.ofNullable(message);
+    }
+
+    public List<Path> getInvalidPaths() {
+        return invalidPaths;
     }
 
     public EvaluationResult<T> inverse() {
