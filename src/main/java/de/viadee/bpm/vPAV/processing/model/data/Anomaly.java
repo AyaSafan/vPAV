@@ -36,7 +36,7 @@ package de.viadee.bpm.vPAV.processing.model.data;
  */
 public enum Anomaly {
     DD("defined-defined"), DU("defined-undefined"), UR("undefined-read"), UU("undefined-undefined"), D("defined-nop"),
-    R("nop-read");
+    R("nop-read"), RC("race-condition");
 
     private final String description;
 

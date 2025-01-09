@@ -101,7 +101,7 @@ public class IssueWriter {
 	}
 
 	/**
-	 *
+	 * NEW
 	 * @param rule
 	 *            Rule
 	 * @param ruleDescription
@@ -116,14 +116,18 @@ public class IssueWriter {
 	 *            Errormessage
 	 * @return Issues
 	 */
-	public static Collection<CheckerIssue> createIssue(final Rule rule, final String ruleDescription, final List<Path> paths,
+	public static Collection<CheckerIssue> createIssue(final Rule rule, final String ruleDescription, final List<Path> paths, final Anomaly anomaly,
 													   final CriticalityEnum classification, final ProcessVariable variable, final String message) {
 
 		final Collection<CheckerIssue> issues = new ArrayList<CheckerIssue>();
 
 		final BpmnElement element = variable.getOperations().get(0).getElement();
 
-		issues.add(new CheckerIssue(rule.getName(), ruleDescription, paths, variable.getName(), classification, element.getProcessDefinition(),
+		issues.add(new CheckerIssue(rule.getName(), ruleDescription,
+				paths, anomaly,
+				variable.getName(),
+				classification,
+				element.getProcessDefinition(),
 				null, null, message));
 
 		return issues;

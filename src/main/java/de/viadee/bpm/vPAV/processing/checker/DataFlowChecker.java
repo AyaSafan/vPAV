@@ -58,7 +58,9 @@ public class DataFlowChecker implements ModelChecker {
         for (DataFlowRule dataFlowRule : dataFlowRules) {
             dataFlowRule.evaluate(processVariables).stream()
                     .filter(r-> !r.isFulfilled())
-                    .map(r -> IssueWriter.createIssue(rule, dataFlowRule.getRuleDescription(), r.getInvalidPaths(), dataFlowRule.getCriticality(),
+                    .map(r -> IssueWriter.createIssue(rule, dataFlowRule.getRuleDescription(),
+                            r.getInvalidPaths(), r.getAnomaly(),
+                            dataFlowRule.getCriticality(),
                             r.getEvaluatedVariable(), dataFlowRule.getViolationMessageFor(r)))
                     .forEach(issues::addAll);
         }

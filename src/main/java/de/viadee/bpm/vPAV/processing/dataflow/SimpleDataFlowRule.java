@@ -46,7 +46,7 @@ import java.util.stream.Stream;
 class SimpleDataFlowRule implements DataFlowRule {
     private static final String RULE_VIOLATION_DESCRIPTION_TEMPLATE = "Rule '%s' was violated %s times%s:\n";
     private static final String RULE_DESCRIPTION_TEMPLATE = "Process variables%s should be %s%s";
-    private static final String VIOLATION_TEMPLATE = "'%s' needed to be %s%s";
+    private static final String VIOLATION_TEMPLATE = "'%s' needed to %s%s";
     private final DescribedPredicateEvaluator<ProcessVariable> constraint;
     private final DescribedPredicateEvaluator<ProcessVariable> condition;
     private String reason;
